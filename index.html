@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AK Properties | Luxury Property Brokerage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+  <div id="app">
+    <nav class="navbar">
+      <div class="logo">AK<span>PROPERTIES</span></div>
+      <button class="mobile-menu-toggle" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="nav-links">
+        <a href="#listings" class="active">Listings</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+
+    <main>
+      <section class="hero">
+        <div class="hero-content">
+          <h1 class="hero-title">CURATING<br>EXTRAORDINARY<br>INDIAN LIFESTYLES</h1>
+          <div class="hero-description">
+            <p>Experience the pinnacle of luxury living in India. We provide exclusive access to the nation's most
+              prestigious
+              properties, tailored for the discerning individual.</p>
+            <button class="btn btn-primary" id="discover-btn">Discover Portfolio</button>
+          </div>
+        </div>
+
+        <div class="hero-image-container">
+          <img id="hero-img" src="/images/hero_villa.png" alt="Luxury Villa Estate in Alibaug" class="hero-image">
+          <div class="floating-ui">
+            <div class="ui-card search-widget">
+              <div class="ui-header">
+                <span class="ui-logo">Find Your Home</span>
+              </div>
+              <div class="ui-field">
+                <label>Property Type</label>
+                <select id="prop-type">
+                  <option>Ultra-Luxury Villas</option>
+                  <option>Sky Penthouses</option>
+                  <option>Heritage Manors</option>
+                  <option>Farmhouses</option>
+                </select>
+              </div>
+              <div class="ui-field">
+                <label>Location</label>
+                <select id="prop-location">
+                  <option>Vijay Nagar, Indore</option>
+                  <option>Old Palasia, Indore</option>
+                  <option>Saket Nagar, Indore</option>
+                  <option>Race Course Road, Indore</option>
+                </select>
+              </div>
+              <div class="ui-field">
+                <label>Price Range</label>
+                <select id="prop-price">
+                  <option>₹1 Cr - ₹5 Cr</option>
+                  <option>₹5 Cr - ₹15 Cr</option>
+                  <option>₹15 Cr+</option>
+                </select>
+              </div>
+              <div class="ui-footer">
+                <button class="btn btn-gold w-full mt-10" id="search-btn">Search Estates</button>
+              </div>
+            </div>
+            <div id="results-container" class="results-container"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="stats-section" id="about">
+        <div class="stats-header">
+          <h2>EXCELLENCE IN<br>INDIAN LUXURY<br>REAL ESTATE</h2>
+          <p>Delivering exceptional results for India's elite.</p>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">🏆</div>
+            <div class="stat-value">₹20K Cr+</div>
+            <div class="stat-label">Total Sales Volume</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">🏡</div>
+            <div class="stat-value">550+</div>
+            <div class="stat-label">Exclusive Indian Listings</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">✨</div>
+            <div class="stat-value">15Y</div>
+            <div class="stat-label">Years of Expertise</div>
+          </div>
+        </div>
+      </section>
+
+      <div class="glitch-separator"></div>
+
+      <section class="generation-section" id="listings">
+        <div class="section-header">
+          <h2>Curated selection of<br>prime architectural gems.</h2>
+          <p>Each property in our portfolio is hand-selected for its unique character, superior craftsmanship, and
+            investment potential in the Indian market.</p>
+        </div>
+
+        <div class="generation-grid">
+          <div class="gen-card black-card">
+            <h3>The Vijay Nagar Sky Villa</h3>
+            <p>A masterpiece of modern design featuring panoramic city views and bespoke interior finishes
+              throughout
+              the entire top floor.</p>
+            <div class="card-footer">
+              <span>Vijay Nagar, Indore</span>
+              <div class="arrow-btn">↗</div>
+            </div>
+          </div>
+          <div class="gen-image-card main-img">
+            <img id="gen-img-1" src="/images/gen1.png" alt="Indore Skyline Penthouse">
+          </div>
+          <div class="gen-image-card small-img">
+            <img id="gen-img-2" src="/images/gen2.png" alt="Luxury Indore Villa Interior">
+          </div>
+          <div class="gen-card black-card small-text">
+            <h3>The Saket Nagar Estate</h3>
+            <p>An architectural statement of minimalism and heritage, nestled in the prestigious lanes of Indore.</p>
+          </div>
+        </div>
+        <div class="btn-container">
+          <button class="btn btn-outline">View All Listings</button>
+        </div>
+      </section>
+
+      <div class="glitch-separator"></div>
+
+      <section class="master-design" id="services">
+        <div class="master-content">
+          <h2>Bespoke<br>Concierge</h2>
+          <p>Beyond finding a home, we curate your complete luxury lifestyle in India.</p>
+          <ul class="steps-list">
+            <li><span class="step-check">✓</span> Ultra-Premium Property Acquisition</li>
+            <li><span class="step-check">✓</span> Heritage Site Legal Consulting</li>
+            <li><span class="step-check">✓</span> Global Indian Portfolio Management</li>
+          </ul>
+          <button class="btn btn-primary">Our Services</button>
+        </div>
+        <div class="master-image">
+          <img id="master-img" src="/images/master.png" alt="Modern Indian Luxury Architecture">
+        </div>
+      </section>
+
+      <section class="full-cta">
+        <img id="cta-bg" src="/images/cta.png" alt="Indian Luxury Lifestyle" class="cta-bg">
+        <div class="cta-overlay">
+          <h2>WHERE INDIAN HERITAGE MEETS<br>MODERN SOPHISTICATION</h2>
+          <button class="btn btn-white">Contact for Private Showing</button>
+        </div>
+      </section>
+
+
+      <div class="glitch-separator"></div>
+
+      <footer class="footer" id="contact">
+        <div class="footer-top">
+          <div class="footer-links">
+            <a href="#listings">Properties</a>
+            <a href="#">Privé Services</a>
+            <a href="#">Our Vision</a>
+          </div>
+          <div class="newsletter">
+            <p>Subscribe to our exclusive newsletter for off-market Indian opportunities.</p>
+            <div class="newsletter-input">
+              <input type="email" id="newsletter-email" placeholder="Email address">
+              <button class="newsletter-btn" id="newsletter-btn">↗</button>
+            </div>
+            <p id="newsletter-msg" style="margin-top: 10px; font-size: 0.8rem; display: none;"></p>
+          </div>
+        </div>
+        <div class="footer-brand">
+          <h1 class="footer-logo">AK<span>PROPERTIES</span></h1>
+        </div>
+        <div class="footer-bottom">
+          <span>&copy; 2026 AK Properties India | Global Luxury Experts</span>
+          <span>concierge@akproperties.in</span>
+          <div class="social-links">
+            <a href="#">Instagram</a>
+            <a href="#">Linkedin</a>
+          </div>
+        </div>
+      </footer>
+    </main>
+  </div>
+  <script type="module" src="/main.js"></script>
+</body>
+
+</html>
