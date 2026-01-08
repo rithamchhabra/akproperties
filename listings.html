@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Listings | AK Properties</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <div id="app">
+        <nav class="navbar scrolled">
+            <div class="logo">AK<span>PROPERTIES</span></div>
+            <button class="mobile-menu-toggle" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-links">
+                <a href="/index.html">Home</a>
+                <a href="/listings.html" class="active">Listings</a>
+                <a href="/index.html#services">Services</a>
+                <a href="/index.html#about">About</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+
+        <main>
+            <div class="glitch-separator" style="margin-top: 80px;"></div>
+
+            <section class="generation-section" id="all-listings-section">
+                <div class="section-header">
+                    <h2>Exclusive Portfolio</h2>
+                    <p>Explore our complete collection of India's finest properties.</p>
+                </div>
+
+                <!-- Reusing the dynamic-listings container ID but we might want a different one to distinguish logic, 
+             or we use the same one and detecting page via URL. 
+             Let's use a unique ID 'all-listings-container' to be specific, 
+             or just reuse 'dynamic-listings' and handle logic in main.js. 
+             I'll use 'all-listings-container' to avoid conflict if I want different behaviors. -->
+                <div id="all-listings-container" class="generation-grid dynamic-grid">
+                    <div class="loading-state">
+                        <p>Loading Complete Portfolio...</p>
+                    </div>
+                </div>
+            </section>
+
+            <div class="glitch-separator"></div>
+
+            <footer class="footer" id="contact">
+                <div class="footer-top">
+                    <div class="footer-links">
+                        <a href="/index.html">Home</a>
+                        <a href="/listings.html#all-listings-section">Properties</a>
+                        <a href="/index.html#services">Private Services</a>
+                        <a href="/index.html#about">Our Vision</a>
+                    </div>
+                    <div class="newsletter">
+                        <p>Subscribe to our exclusive newsletter for off-market Indian opportunities.</p>
+                        <div class="newsletter-input">
+                            <input type="email" id="newsletter-email" placeholder="Email address">
+                            <button class="newsletter-btn" id="newsletter-btn">↗</button>
+                        </div>
+                        <p id="newsletter-msg" style="margin-top: 10px; font-size: 0.8rem; display: none;"></p>
+                    </div>
+                </div>
+                <div class="footer-brand">
+                    <h1 class="footer-logo">AK<span>PROPERTIES</span></h1>
+                </div>
+                <div class="footer-bottom">
+                    <span>&copy; 2026 AK Properties India | Global Luxury Experts</span>
+                    <div class="contact-info-footer">
+                        <span>📞 +91 94247 66987</span>
+                        <span>📷 @ak_properties_09</span>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://instagram.com/ak_properties_09" target="_blank">Instagram</a>
+                        <a href="#">Linkedin</a>
+                    </div>
+                </div>
+            </footer>
+        </main>
+    </div>
+    <script type="module" src="/main.js"></script>
+</body>
+
+</html>

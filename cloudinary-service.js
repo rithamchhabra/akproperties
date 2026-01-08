@@ -1,6 +1,6 @@
 // Cloudinary Service
-const CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME || 'dqn440z4a'; // Fallback if env fails
-const UPLOAD_PRESET = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET || 'ncw3qswh';
+const CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
+const UPLOAD_PRESET = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
 
 export const uploadImageToCloudinary = async (file) => {
   if (!file) {
@@ -21,8 +21,8 @@ export const uploadImageToCloudinary = async (file) => {
     );
 
     if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error?.message || "Image upload failed");
+      const errorData = await response.json();
+      throw new Error(errorData.error?.message || "Image upload failed");
     }
 
     const data = await response.json();

@@ -28,7 +28,13 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     overflow-x: hidden;
+    width: 100%;
     line-height: 1.4;
+}
+
+html {
+    overflow-x: hidden;
+    width: 100%;
 }
 
 #app {
@@ -935,13 +941,24 @@ body {
     /* Overlap effect for Search Widget */
     .floating-ui {
         position: relative;
-        top: 0;
-        left: 0;
+        top: auto;
+        /* Reset top */
+        left: auto;
+        /* Reset left */
         width: 100%;
+        /* Ensure it takes full width of container */
         margin-top: -60px;
         /* Pull up to overlap image */
         padding: 0 20px;
         z-index: 5;
+        flex-direction: column;
+        /* Stack children vertically */
+        align-items: center;
+        /* Center align items */
+        max-width: 100vw;
+        /* Prevent overflow */
+        box-sizing: border-box;
+        /* Explicitly set border-box */
     }
 
     .ui-card.search-widget {
@@ -954,10 +971,23 @@ body {
         /* Ensure solid background */
     }
 
-    /* Hide dynamic results on mobile initially to save space, or stack them */
+    /* Show dynamic results on mobile */
     .results-container {
-        display: none;
-        /* Simplify mobile view as per screenshot */
+        display: flex;
+        margin-top: 20px;
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 20px;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+    }
+
+    .results-card {
+        min-width: 280px;
+        /* Slightly smaller for mobile */
+        width: 280px;
+        scroll-snap-align: center;
+        margin-right: 15px;
     }
 
     .stats-header h2 {
@@ -996,8 +1026,12 @@ body {
     }
 
     .footer-logo {
-        font-size: 4.5rem;
+        font-size: 3rem;
+        /* Reduced from 4.5rem to prevent overflow */
         margin-bottom: 20px;
+        word-break: break-all;
+        /* Ensure long text wraps */
+        line-height: 1;
     }
 
     .footer-bottom {

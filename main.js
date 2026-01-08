@@ -71,16 +71,25 @@ let allProperties = [];
 
 // Fetch Properties from Firestore
 async function loadProperties() {
-    const listingsContainer = document.getElementById('dynamic-listings');
-    if (!listingsContainer) return;
+    // Check which page we are on by looking for the containers
+    const homepageContainer = document.getElementById('dynamic-listings');
+    const allListingsContainer = document.getElementById('all-listings-container');
+
+    // If neither exists, we are on a page that doesn't show listings (like property details or unknown)
+    if (!homepageContainer && !allListingsContainer) return;
 
     try {
         const querySnapshot = await getDocs(collection(db, "properties"));
         allProperties = [];
-        listingsContainer.innerHTML = '';
+
+        // Clear containers
+        if (homepageContainer) homepageContainer.innerHTML = '';
+        if (allListingsContainer) allListingsContainer.innerHTML = '';
 
         if (querySnapshot.empty) {
-            listingsContainer.innerHTML = '<p class="no-listings">Portfolio is currently being curated. Check back soon.</p>';
+            const noListingsMsg = '<p class="no-listings">Portfolio is currently being curated. Check back soon.</p>';
+            if (homepageContainer) homepageContainer.innerHTML = noListingsMsg;
+            if (allListingsContainer) allListingsContainer.innerHTML = noListingsMsg;
             return;
         }
 
@@ -88,23 +97,36 @@ async function loadProperties() {
             allProperties.push({ id: doc.id, ...doc.data() });
         });
 
-        renderProperties(allProperties);
+        // Render based on which container is present
+        if (allListingsContainer) {
+            // Render ALL properties on listings page
+            renderProperties(allProperties, allListingsContainer);
+        }
+
+        if (homepageContainer) {
+            // Render LIMITED properties on homepage (e.g., top 6)
+            const limitedProps = allProperties.slice(0, 6);
+            renderProperties(limitedProps, homepageContainer);
+        }
 
     } catch (error) {
         console.error("Error loading properties:", error);
-        listingsContainer.innerHTML = '<p class="error-msg">Unable to load listings at this time.</p>';
+        const errorMsg = '<p class="error-msg">Unable to load listings at this time.</p>';
+        if (homepageContainer) homepageContainer.innerHTML = errorMsg;
+        if (allListingsContainer) allListingsContainer.innerHTML = errorMsg;
     }
 }
 
-function renderProperties(properties) {
-    const listingsContainer = document.getElementById('dynamic-listings');
-    if (!listingsContainer) return;
-
-    listingsContainer.innerHTML = '';
+function renderProperties(properties, container) {
+    if (!container) return; // Safety check
+    container.innerHTML = ''; // Clear loading state or previous content
+    // The following two lines were redundant and referred to an undeclared variable 'listingsContainer'.
+    // They have been removed as 'container.innerHTML = '';' already handles clearing.
 
     properties.forEach(prop => {
         const card = document.createElement('div');
         card.className = 'property-card';
+        const whatsappMsg = encodeURIComponent(`I am interested in ${prop.title}.`);
         card.innerHTML = `
             <div class="card-image">
                 <img src="${prop.imageUrl}" alt="${prop.title}">
@@ -116,11 +138,14 @@ function renderProperties(properties) {
                 <p class="card-desc">${prop.description || ''}</p>
                 <div class="card-footer">
                     <span class="card-price">${prop.price}</span>
-                    <button class="btn-arrow">↗</button>
+                    <div style="display:flex; gap:10px;">
+                        <a href="https://wa.me/919424766987?text=${whatsappMsg}" target="_blank" class="btn-arrow" style="text-decoration:none;">💬</a>
+                        <a href="/property.html?id=${prop.id}" class="btn-arrow" style="text-decoration:none;">↗</a>
+                    </div>
                 </div>
             </div>
         `;
-        listingsContainer.appendChild(card);
+        container.appendChild(card);
     });
 }
 
@@ -164,7 +189,9 @@ if (searchBtn) {
             if (resultsContainer) {
                 if (results.length > 0) {
                     // Render ALL results
-                    const resultsHTML = results.map(p => `
+                    const resultsHTML = results.map(p => {
+                        const whatsappMsg = encodeURIComponent(`I am interested in ${p.title} at ${p.location}.`);
+                        return `
                         <div class="results-card">
                             <img src="${p.imageUrl}" alt="${p.title}" class="result-image">
                             <div class="result-info">
@@ -175,12 +202,12 @@ if (searchBtn) {
                                     <span>${p.type}</span>
                                 </div>
                                 <div class="result-actions">
-                                    <button class="btn-small btn-view">View Listing</button>
-                                    <button class="btn-small btn-contact">Enquire</button>
+                                    <a href="/property.html?id=${p.id}" class="btn-small btn-view" style="text-decoration:none; display:inline-block; text-align:center;">View Listing</a>
+                                    <a href="https://wa.me/919424766987?text=${whatsappMsg}" target="_blank" class="btn-small btn-contact" style="text-decoration:none; display:inline-block; text-align:center;">Enquire</a>
                                 </div>
                             </div>
                         </div>
-                    `).join('');
+                    `}).join('');
 
                     resultsContainer.innerHTML = resultsHTML;
                 } else {
